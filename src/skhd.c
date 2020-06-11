@@ -476,7 +476,6 @@ int main(int argc, char **argv)
     signal(SIGCHLD, SIG_IGN);
     signal(SIGUSR1, sigusr1_handler);
 
-    init_shell();
     table_init(&mode_map, 13, (table_hash_func) hash_string, (table_compare_func) compare_string);
     table_init(&blacklst, 13, (table_hash_func) hash_string, (table_compare_func) compare_string);
     END_SCOPED_TIMED_BLOCK();

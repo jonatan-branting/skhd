@@ -15,7 +15,7 @@
 #define RMOD_OFFS   2
 
 global char arg[] = "-c";
-global char *shell = NULL;
+global char *shell = "sh";
 
 internal uint32_t cgevent_lrmod_flag[] =
 {
@@ -103,7 +103,7 @@ fork_and_exec(char *command)
     int cpid = fork();
     if (cpid == 0) {
         setsid();
-        char *exec[] = { shell, arg, command, NULL};
+        char *exec[] = { "/usr/bin/env", shell, arg, command, NULL};
         int status_code = execvp(exec[0], exec);
         exit(status_code);
     }
@@ -299,12 +299,4 @@ bool intercept_systemkey(CGEventRef event, struct hotkey *eventkey)
     }
 
     return result;
-}
-
-void init_shell(void)
-{
-    if (!shell) {
-        char *env_shell = getenv("SHELL");
-        shell = env_shell ? env_shell : "/bin/bash";
-    }
 }

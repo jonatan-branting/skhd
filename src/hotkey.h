@@ -114,6 +114,4 @@ bool find_and_exec_hotkey(struct hotkey *k, struct table *t, struct mode **m, st
 void free_mode_map(struct table *mode_map);
 void free_blacklist(struct table *blacklst);
 
-void init_shell(void);
-
 #endif
